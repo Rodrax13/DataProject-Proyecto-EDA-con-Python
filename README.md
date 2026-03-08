@@ -1,89 +1,77 @@
-📊 DataProject_ Proyecto EDA con Python
-📌 Objetivo del proyecto
-El objetivo de este proyecto es realizar un Análisis Exploratorio de Datos (EDA) sobre campañas de marketing directo de una institución bancaria portuguesa, utilizando Python y librerías de análisis de datos.
-Se busca:
-•	Limpiar y transformar los datos
-•	Analizar estadísticamente las variables
-•	Visualizar patrones relevantes
-•	Extraer conclusiones basadas en datos reales
-________________________________________
-📁 Estructura del repositorio
+# 📊 DataProject: Proyecto EDA con Python
+
+## 📌 Objetivo del proyecto
+Mi objetivo en este proyecto ha sido realizar un Análisis Exploratorio de Datos (EDA) exhaustivo sobre campañas de marketing telefónico de una institución bancaria. 
+
+A través de Python, he buscado limpiar, transformar y visualizar los datos con un enfoque analítico crítico, desmintiendo supuestos previos y encontrando los patrones de comportamiento que dictan por qué un cliente suscribe el producto.
+
+---
+
+## 📁 Estructura del repositorio
+
+Proyecto4_DataProject-Proyecto-EDA-con-Python
 ├── data/
 │   ├── raw/
 │   │   ├── bank-additional.csv
 │   │   └── customer-details.xlsx
 │   └── processed/
 │       ├── bank_clean.csv
-│       └── customers_clean.csv
+│       ├── customers_clean.csv
+│       ├── df_final_clean.csv
 │
 ├── notebooks/
-│   ├── DataProject_ Proyecto EDA con Python.ipynb
+│   ├── DataProject_ Proyecto EDA con Python V2.ipynb
 │
 └── README.md
-________________________________________
-📊 Conjuntos de datos utilizados
-📄 bank-additional.csv
-Contiene información sobre campañas de marketing bancario:
-•	Edad, profesión, educación, estado civil
-•	Historial financiero (préstamos, impagos)
-•	Información de campaña (duración llamada, número de contactos)
-•	Variables económicas
-•	Variable objetivo: y (suscripción al producto)
-________________________________________
-📄 customer-details.xlsx
-Información demográfica y comportamiento de clientes:
-•	Ingresos anuales
-•	Hijos en el hogar
-•	Antigüedad como cliente
-•	Visitas mensuales a la web
-Las hojas fueron unificadas en un único dataset.
-________________________________________
-🧹 Proceso de limpieza y transformación
-Se realizaron las siguientes acciones:
-•	Eliminación o imputación de valores nulos
-•	Conversión de columnas a tipos adecuados (numéricos y fechas)
-•	Normalización de variables categóricas
-•	Unión de datasets de Excel mediante pd.concat()
-•	Creación de datasets limpios para análisis posterior
-Resultado: datos consistentes y listos para análisis.
-________________________________________
-📈 Análisis exploratorio realizado
-🔍 Estadística descriptiva
-•	Medias, medianas, desviaciones estándar
-•	Distribución de variables numéricas
-•	Frecuencias de variables categóricas
-•	Análisis de correlaciones
-________________________________________
-📊 Visualizaciones principales
-•	Distribución de clientes que suscriben el producto
-•	Edad vs conversión
-•	Duración de llamadas vs resultado
-•	Heatmap de correlaciones
-•	Conversión por tipo de trabajo
-•	Distribución de ingresos de clientes
-________________________________________
-🧠 Principales conclusiones
-✔ La mayoría de los clientes no suscriben el producto (dataset desbalanceado)
-✔ La duración de la llamada es el factor más influyente en la conversión: llamadas más largas presentan tasas mucho mayores de éxito
-✔ Clientes de mayor edad tienden a aceptar más el producto
-✔ Algunos perfiles laborales muestran mejores resultados de campaña
-✔ Un número excesivo de contactos en la campaña se relaciona con menor probabilidad de conversión
-✔ Variables económicas presentan relación con el comportamiento de los clientes
-________________________________________
-🛠️ Herramientas utilizadas
-•	Python
-•	Pandas
-•	NumPy
-•	Matplotlib
-•	Seaborn
-•	Visual Studio Code
-________________________________________
-📌 Conclusión general
-El análisis exploratorio permitió comprender los factores que influyen en el éxito de las campañas de marketing bancario.
-La duración del contacto y ciertos perfiles de clientes son claves para mejorar la efectividad de futuras campañas.
-Este proyecto demuestra el uso de Python para:
-•	Limpieza de datos
-•	Análisis estadístico
-•	Visualización de información
-•	Extracción de insights de negocio
 
+ 
+
+
+🧹 Proceso de limpieza y transformación
+
+Para garantizar la fiabilidad de mi análisis, ejecuté el siguiente flujo de preparación:
+
+Imputación lógica: Utilicé medianas y medias para las variables numéricas, y modas para rescatar los nulos de variables binarias sin alterar su peso estadístico.
+
+Conversión de tipos: Limpié cadenas de texto numéricas (comas por puntos) y optimicé el consumo de memoria convirtiendo textos a tipos categóricos.
+
+Tratamiento temporal: Transformé los meses en español a fechas válidas (datetime) para extraer mes y día laborable.
+
+Cruce (Merge): Fusioné eficientemente los datos de campaña del banco con los datos financieros del cliente usando sus ID únicos.
+
+
+
+
+📈 Análisis de Resultados e Insights Obtenidos
+
+Tras analizar los gráficos y métricas, he extraído los siguientes hallazgos de negocio:
+
+✔️ Alta ineficiencia global: El dataset presenta un fuerte desbalanceo (~11% de conversión). La estrategia actual de llamadas masivas en frío es ineficiente y quema recursos.
+
+✔️ El mito de los ingresos: Al cruzar la edad con los ingresos anuales, he demostrado que el nivel salarial no es un factor discriminante. El producto es contratado por perfiles de todos los rangos de ingresos.
+
+✔️ El perfil demográfico óptimo: El banco concentra sus llamadas en personas de 30 a 45 años con baja conversión. Sin embargo, los jubilados (mayores de 60) y estudiantes tienen una predisposición a contratar el depósito excepcionalmente más alta.
+
+✔️ El peso del éxito previo: Los clientes que ya aceptaron una oferta en el pasado (poutcome = SUCCESS) son el segmento más seguro y deben ser la prioridad absoluta.
+
+✔️ Optimización de Estacionalidad: El mes de mayo concentra el mayor volumen de llamadas de todo el año, pero tiene la peor tasa de conversión. Redistribuir las campañas hacia el verano (junio, julio, agosto) y la recta final/inicio de año (octubre a enero) dispara la eficiencia. Además, he comprobado que el día de la semana es totalmente irrelevante.
+
+
+
+
+🛠️ Herramientas utilizadas
+
+Python (Pandas, NumPy) para manipulación y limpieza de datos.
+
+Matplotlib y Seaborn para visualización avanzada (gráficos de doble eje, segmentación, eliminación de outliers).
+
+Jupyter Notebooks / VS Code para el entorno de desarrollo y presentación.
+
+
+
+
+📌 Conclusión General y Siguientes Pasos
+
+Este análisis me ha permitido demostrar que el éxito de la campaña no reside en llamar masivamente durante todo el año a los perfiles más abundantes (30-45 años), ni depende fuertemente de los ingresos del cliente.
+
+La clave del éxito reside en cambiar hacia un modelo de calidad vs. cantidad: priorizar a aquellos con éxito en campañas pasadas, aprovechar perfiles receptivos (jubilados/estudiantes) y redistribuir el esfuerzo comercial a los meses de mayor conversión. Como siguientes pasos, sugiero analizar el umbral de "fatiga comercial" (límite de llamadas por cliente) y alinear los lanzamientos con momentos macroeconómicos favorables.
